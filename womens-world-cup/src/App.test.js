@@ -14,6 +14,6 @@ it('renders "Womens World Cup" text', () => {
   const wrapper = rtl.render(<App />);
   // IMPORTANT
   // wrapper.queryByText() returns either the node, or null:
-  const baseballHeaderText = wrapper.queryByText(/Womens World Cup/i);
-  expect(baseballHeaderText).toBeInTheDocument();
+  const headerText = wrapper.queryByText(/Womens World Cup/i);
+  expect(headerText).toBeInTheDocument();
 });
