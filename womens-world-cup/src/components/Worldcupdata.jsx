@@ -34,7 +34,7 @@ export default class WorldcupData extends React.Component {
             <li className="list" key={player.id}>
               {player.name} <br />
               Country: {player.country} <br />
-              Google searches:
+              Google Popularity by no. searches:
               {player.searches}
               <br />
             </li>
@@ -44,6 +44,7 @@ export default class WorldcupData extends React.Component {
     );
   }
 }
+// Functional component with state and hooks
 
 // export default function WorldcupData() {
 //   const [players, fetchPlayers] = useState([]);
