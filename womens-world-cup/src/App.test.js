@@ -1,9 +1,19 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from "react";
+// import { render } from '@testing-library/react';
+import App from "./App";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import * as rtl from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+
+afterEach(rtl.cleanup);
+
+it("renders without crashing", () => {
+  const wrapper = rtl.render(<App />);
+});
+it('renders "Womens World Cup" text', () => {
+  const wrapper = rtl.render(<App />);
+  // IMPORTANT
+  // wrapper.queryByText() returns either the node, or null:
+  const baseballHeaderText = wrapper.queryByText(/Womens World Cup/i);
+  expect(baseballHeaderText).toBeInTheDocument();
 });
