@@ -12,7 +12,7 @@ const Navbar = () => {
   };
   return (
     <nav className="navbar">
-      <h1>Night time Mode</h1>
+      <h3>Night time Mode</h3>
       <div className="dark-mode__toggle ">
         <div
           onClick={toggleMode}

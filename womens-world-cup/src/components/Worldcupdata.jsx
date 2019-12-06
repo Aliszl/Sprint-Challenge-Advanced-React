@@ -1,73 +1,66 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 // import Card from "./Card";
 
-export default function WorldcupData() {
-  const [users, fetchUsers] = useState([]);
+export default class WorldcupData extends React.Component {
+  state = {
+    players: []
+  };
 
-  useEffect(() => {
-    console.log("WorldcupData component mounted");
+  componentDidMount() {
+    axios.get("http://localhost:5000/api/players").then(response => {
+      console.log(response);
+      console.log(response.data);
+      this.setState({ players: response.data });
+    });
+  }
 
-    axios
-      .get("http://localhost:5000/api/players")
-
-      .then(response => {
-        console.log(response);
-        console.log(response.data);
-
-        fetchUsers(response.data);
-      })
-      .catch(error => {
-        console.log("the data was not returned", error);
-      });
-  }, []);
-
-  return (
-    <div>
-      {users.map(player => {
-        return (
-          <div>
-            <li key={player.name}>
-              Player:{player.name} Country:
-              {player.country} Searches:{player.searches} ID: {player.id}
-              {/* {player.name}
-              {player.country} */}
-            </li>
-            {/* <li key={player.country}>{player.country}</li> */}
-          </div>
-        );
-      })}
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        {this.state.players.map(player => (
+          <li key={player.id}>
+            {player.name} {player.country} {player.searches}
+          </li>
+        ))}
+      </div>
+    );
+  }
 }
 
-// export default class Worldcup extends React.Component {
-//   state = {
-//     users: []
-//   };
+// export default function WorldcupData() {
+//   const [players, fetchPlayers] = useState([]);
 
-//   componentDidMount() {
+//   useEffect(() => {
+//     console.log("WorldcupData component mounted");
+
 //     axios
 //       .get("http://localhost:5000/api/players")
+
 //       .then(response => {
 //         console.log(response);
 //         console.log(response.data);
-//         this.setState({ users: response.data });
-//       });
-//   }
 
-//   render() {
-//     return (
-//       <div>
-//         {this.state.users.map(user => (
-//           <li key={user.name}>{user.name}</li>
-//         ))}
-//       </div>
-//     );
-//   }
+//         fetchPlayers(response.data);
+//       })
+//       .catch(error => {
+//         console.log("the data was not returned", error);
+//       });
+//   }, []);
+
+//   return (
+//     <div>
+//       {players.map(player => {
+//         return (
+//           <div>
+//             <li key={player.id}>
+//               Player:{player.name} Country:
+//               {player.country} Searches:{player.searches} ID: {player.id}
+//             </li>
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
 // }
-// <ul>
-//   {this.state.users.map(user => (
-//     <li key={user.name}>{user.name}</li>
-//   ))}
-// </ul>;
