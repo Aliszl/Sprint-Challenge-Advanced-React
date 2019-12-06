@@ -24,8 +24,18 @@ export default function WorldcupData() {
 
   return (
     <div>
-      {users.map(user => {
-        return <li key={user.name}>{user.name}</li>;
+      {users.map(player => {
+        return (
+          <div>
+            <li key={player.name}>
+              Player:{player.name} Country:
+              {player.country} Searches:{player.searches} ID: {player.id}
+              {/* {player.name}
+              {player.country} */}
+            </li>
+            {/* <li key={player.country}>{player.country}</li> */}
+          </div>
+        );
       })}
     </div>
   );
